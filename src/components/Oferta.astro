@@ -1,20 +1,12 @@
 ---
 import { waLink } from "../lib/consts";
-
-const inclui = [
-  "Briefing completo e definição de posicionamento",
-  "Estratégia para Instagram e LinkedIn + calendário editorial de 6 meses",
-  "Roteiros, guias de autoprodução e pack Canva personalizado",
-  "Ensaio fotográfico profissional, vídeo manifesto e 3 vídeos captados e editados",
-  "Acompanhamento direto com a Rayane em cada etapa",
-];
 ---
 
 <section class="oferta">
   <div class="inner">
     <p class="eyebrow reveal">A Jornada</p>
     <blockquote class="pull-quote reveal">
-      Você sai da Jornada com clareza, presença e tudo que precisa para se
+      Você sai da Jornada com clareza, direção e tudo o que precisa para se
       posicionar com convicção.
     </blockquote>
 
@@ -22,29 +14,18 @@ const inclui = [
       <div class="card-head">
         <h2>Jornada Além do Feed</h2>
         <p class="formato">
-          Acompanhamento aprofundado · 3 meses · online ou presencial em
-          Recife
+          Acompanhamento de 3 meses · online ou presencial (no Recife)
         </p>
       </div>
 
       <div class="vagas">
-        <span class="label">Próxima turma</span>
         <span class="valor">5 vagas disponíveis</span>
         <p class="vagas-texto">
-          Cada Jornada tem três meses de acompanhamento direto com a
-          Rayane. Cinco é o que cabe sem perder profundidade.
+          Cada Jornada são três meses de acompanhamento lado a lado. Por
+          isso, apenas cinco vagas por vez, que é o que permite manter a
+          profundidade que o processo pede.
         </p>
       </div>
-
-      <ul>
-        {inclui.map((item) => <li>{item}</li>)}
-      </ul>
-
-      <p class="adicional">
-        Dá pra somar identidade visual e outras parcerias conforme o seu
-        momento. Isso a gente combina em conversa, junto com o investimento
-        e as condições.
-      </p>
 
       <a
         class="cta btn-glass"
@@ -122,18 +103,10 @@ const inclui = [
 
   .vagas {
     display: grid;
-    gap: var(--space-1);
+    gap: var(--space-2);
     margin-block: var(--space-4);
     padding-block: var(--space-3);
     border-block: 1px solid var(--border);
-  }
-
-  .label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--secondary);
   }
 
   .valor {
@@ -143,46 +116,14 @@ const inclui = [
   }
 
   .vagas-texto {
-    margin-top: var(--space-2);
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--secondary);
-  }
-
-  .card ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-
-  .card li {
-    padding-left: 1.6em;
-    position: relative;
-    line-height: 1.55;
-  }
-
-  .card li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--primary);
-  }
-
-  .adicional {
-    font-size: 0.9rem;
-    color: var(--secondary);
-    line-height: 1.6;
-    margin-bottom: var(--space-4);
   }
 
   .cta {
     display: block;
+    margin-top: var(--space-4);
     text-align: center;
     font-family: var(--font-mono);
     font-weight: 600;

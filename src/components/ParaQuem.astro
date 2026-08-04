@@ -1,7 +1,7 @@
 ---
 const paraVoce = [
   "Já é vista como competente, mas sente que essa percepção não conta a história toda",
-  "Fala com públicos muito diferentes — diretoria, equipe, clientes — e não sabe costurar isso numa identidade só",
+  "Fala com públicos muito diferentes (diretoria, equipe, clientes) e não sabe costurar isso numa identidade só",
   "Tem repertório e experiência reais; falta estrutura pra comunicar isso com clareza",
   "Topa um processo real de autoconhecimento antes de qualquer estratégia",
 ];
@@ -16,16 +16,16 @@ const naoEhParaVoce = [
 <section class="para-quem">
   <div class="inner">
     <p class="eyebrow reveal">Pra quem é</p>
-    <h2 class="reveal">A Jornada é pensada pra mulheres profissionais que reconhecem algo nisso.</h2>
+    <h2 class="reveal">A jornada foi construída para mulheres que querem se posicionar com verdade e assertividade</h2>
     <div class="grid">
       <div class="col">
-        <h3 class="reveal"><span class="icon-check" aria-hidden="true"></span>É pra você, se você</h3>
+        <h3 class="reveal"><span class="icon-check" aria-hidden="true"></span>É para você que</h3>
         <ul>
           {paraVoce.map((item) => <li class="reveal">{item}</li>)}
         </ul>
       </div>
       <div class="col muted">
-        <h3 class="reveal"><span class="icon-x" aria-hidden="true"></span>Não é pra você, se você</h3>
+        <h3 class="reveal"><span class="icon-x" aria-hidden="true"></span>Não é para você que</h3>
         <ul>
           {naoEhParaVoce.map((item) => <li class="reveal">{item}</li>)}
         </ul>

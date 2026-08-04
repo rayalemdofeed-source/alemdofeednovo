@@ -6,12 +6,13 @@ import { waLink } from "../lib/consts";
 
 <section class="hero" id="topo">
   <div class="glow" aria-hidden="true"></div>
+  <canvas class="glow-gl" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div class="copy">
       <p class="eyebrow enter">Jornada Além do Feed</p>
       <h1 class="enter" style="animation-delay: 60ms">
-        Presença real, <em
-          >traduzida com método.
+        Posicionamento real, <em
+          >traduzido com método.
           <svg
             class="scribble"
             viewBox="0 0 400 40"
@@ -25,10 +26,8 @@ import { waLink } from "../lib/consts";
         </em>
       </h1>
       <p class="lead enter" style="animation-delay: 140ms">
-        Acompanhamento para transformar o que você já é em posicionamento,
-        presença e material visual profissional. Sem fórmula pronta, sem
-        personagem novo — só o que já existe em você, com estrutura em
-        volta.
+        O Além do Feed é uma consultoria de marca pessoal para mulheres que
+        querem comunicar e se posicionar com verdade e estratégia.
       </p>
       <a
         class="cta enter btn-glass"
@@ -77,7 +76,10 @@ import { waLink } from "../lib/consts";
 
   .glow {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: min(100%, 900px);
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
@@ -107,6 +109,26 @@ import { waLink } from "../lib/consts";
     top: var(--my2);
     background: var(--secondary);
     opacity: 0.2;
+  }
+
+  .glow-gl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: min(100%, 900px);
+    z-index: 0;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .hero.webgl-ready .glow {
+    display: none;
+  }
+
+  .hero.webgl-ready .glow-gl {
+    opacity: 1;
   }
 
   .copy,
@@ -282,12 +304,18 @@ import { waLink } from "../lib/consts";
 </style>
 
 <script>
-  // Ilha mínima: a bolha de fundo do hero segue o mouse em telas com
-  // ponteiro fino (desktop). Em touch, mantém a deriva automática do CSS.
+  // Ilha do hero: duas bolhas de fundo.
+  // 1) Fallback CSS (blur + circle) — sempre no DOM, é o que se vê por
+  //    padrão e o que fica se WebGL não estiver disponível ou o usuário
+  //    pedir menos movimento.
+  // 2) WebGL (canvas.glow-gl) — substitui o fallback quando o navegador
+  //    suporta, dá uma bolha orgânica que segue o mouse com inércia.
   const hero = document.querySelector<HTMLElement>(".hero");
   const canHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Fallback CSS: mantém o comportamento anterior (segue o mouse via
+  // custom properties) para quem não tiver WebGL.
   if (hero && canHover && !reduceMotion) {
     hero.addEventListener("pointermove", (e) => {
       const rect = hero.getBoundingClientRect();
@@ -303,5 +331,182 @@ import { waLink } from "../lib/consts";
     hero.addEventListener("pointerleave", () => {
       hero.classList.remove("mouse-active");
     });
+  }
+
+  // WebGL: só entra se o navegador suportar e o usuário aceitar movimento.
+  // O canvas WebGL fica só em telas largas (onde o hero tem as duas
+  // colunas e o mouse existe de fato). Em telas estreitas, o fallback
+  // CSS (mais leve, sem risco de disputa de memória de GPU com o resto
+  // da página) já cobre bem o efeito.
+  const isWideScreen = matchMedia("(min-width: 900px)").matches;
+  if (hero && !reduceMotion && isWideScreen) initWebglGlow(hero);
+
+  function initWebglGlow(hero: HTMLElement) {
+    const canvas = hero.querySelector<HTMLCanvasElement>(".glow-gl");
+    if (!canvas) return;
+
+    const gl = canvas.getContext("webgl", {
+      alpha: true,
+      antialias: false,
+      premultipliedAlpha: true,
+    });
+    if (!gl) return; // sem WebGL: fica no fallback CSS
+
+    const vertexSrc = `
+      attribute vec2 a_pos;
+      void main() {
+        gl_Position = vec4(a_pos, 0.0, 1.0);
+      }
+    `;
+
+    const fragmentSrc = `
+      precision mediump float;
+      uniform vec2 u_resolution;
+      uniform vec2 u_blob1;
+      uniform vec2 u_blob2;
+      uniform float u_radius1;
+      uniform float u_radius2;
+      uniform vec3 u_color1;
+      uniform vec3 u_color2;
+
+      void main() {
+        vec2 frag = vec2(gl_FragCoord.x, u_resolution.y - gl_FragCoord.y);
+        float d1 = distance(frag, u_blob1);
+        float d2 = distance(frag, u_blob2);
+        float a1 = 1.0 - smoothstep(0.0, u_radius1, d1);
+        float a2 = 1.0 - smoothstep(0.0, u_radius2, d2);
+        a1 = pow(a1, 1.6) * 0.55;
+        a2 = pow(a2, 1.6) * 0.45;
+        vec3 color = u_color1 * a1 + u_color2 * a2;
+        float alpha = clamp(a1 + a2, 0.0, 1.0);
+        gl_FragColor = vec4(color * alpha, alpha);
+      }
+    `;
+
+    function compile(type: number, source: string) {
+      const shader = gl!.createShader(type)!;
+      gl!.shaderSource(shader, source);
+      gl!.compileShader(shader);
+      if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
+        gl!.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    const vs = compile(gl.VERTEX_SHADER, vertexSrc);
+    const fs = compile(gl.FRAGMENT_SHADER, fragmentSrc);
+    if (!vs || !fs) return;
+
+    const program = gl.createProgram()!;
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+    gl.useProgram(program);
+
+    const posBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+      gl.STATIC_DRAW,
+    );
+    const posLoc = gl.getAttribLocation(program, "a_pos");
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const u = {
+      resolution: gl.getUniformLocation(program, "u_resolution"),
+      blob1: gl.getUniformLocation(program, "u_blob1"),
+      blob2: gl.getUniformLocation(program, "u_blob2"),
+      radius1: gl.getUniformLocation(program, "u_radius1"),
+      radius2: gl.getUniformLocation(program, "u_radius2"),
+      color1: gl.getUniformLocation(program, "u_color1"),
+      color2: gl.getUniformLocation(program, "u_color2"),
+    };
+
+    // Cores da marca (terracota + marrom-vinho), 0..1
+    gl.uniform3f(u.color1, 180 / 255, 94 / 255, 52 / 255);
+    gl.uniform3f(u.color2, 103 / 255, 71 / 255, 71 / 255);
+
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = 0;
+    let height = 0;
+
+    function resize() {
+      const rect = canvas!.getBoundingClientRect();
+      width = Math.max(1, Math.round(rect.width * dpr));
+      height = Math.max(1, Math.round(rect.height * dpr));
+      canvas!.width = width;
+      canvas!.height = height;
+      gl!.viewport(0, 0, width, height);
+      gl!.uniform2f(u.resolution, width, height);
+    }
+    resize();
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(hero);
+
+    // Estado alvo (0..1 relativo ao hero) e posição suavizada da bolha 1.
+    let targetX = 0.16;
+    let targetY = 0.22;
+    let curX = targetX;
+    let curY = targetY;
+    let following = false;
+
+    hero.addEventListener("pointermove", (e) => {
+      const rect = canvas!.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width;
+      targetY = (e.clientY - rect.top) / rect.height;
+      following =
+        targetY >= -0.15 && targetY <= 1.15 && targetX >= -0.15 && targetX <= 1.15;
+    });
+    hero.addEventListener("pointerleave", () => {
+      following = false;
+    });
+
+    let raf = 0;
+    let visible = !document.hidden;
+    const updateVisible = () => {
+      visible = !document.hidden;
+    };
+    let start = performance.now();
+
+    function frame(now: number) {
+      raf = requestAnimationFrame(frame);
+      if (!visible) return;
+
+      const t = (now - start) / 1000;
+
+      if (following) {
+        curX += (targetX - curX) * 0.06;
+        curY += (targetY - curY) * 0.06;
+      } else {
+        // deriva orgânica quando o mouse não está por perto
+        curX = 0.18 + Math.sin(t * 0.25) * 0.1;
+        curY = 0.24 + Math.cos(t * 0.2) * 0.12;
+      }
+
+      const b2x = 0.82 + Math.sin(t * 0.18 + 2.0) * 0.08;
+      const b2y = 0.76 + Math.cos(t * 0.22 + 1.0) * 0.1;
+
+      gl!.uniform2f(u.blob1, curX * width, curY * height);
+      gl!.uniform2f(u.blob2, b2x * width, b2y * height);
+      gl!.uniform1f(u.radius1, Math.min(width, height) * 0.55);
+      gl!.uniform1f(u.radius2, Math.min(width, height) * 0.48);
+
+      gl!.clearColor(0, 0, 0, 0);
+      gl!.clear(gl!.COLOR_BUFFER_BIT);
+      gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
+    }
+
+    document.addEventListener("visibilitychange", updateVisible);
+
+    hero.classList.add("webgl-ready");
+    raf = requestAnimationFrame(frame);
   }
 </script>
