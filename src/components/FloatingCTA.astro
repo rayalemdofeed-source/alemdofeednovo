@@ -1,0 +1,133 @@
+---
+import { waLink } from "../lib/consts";
+---
+
+<div class="floating-cta">
+  <div class="bar">
+    <span class="dot" aria-hidden="true"></span>
+    <a
+      class="cta btn-glass"
+      href={waLink("Olá, Rayane! Quero começar minha Jornada Além do Feed.")}
+    >
+      Quero a Jornada
+    </a>
+  </div>
+</div>
+
+<style>
+  .floating-cta {
+    position: fixed;
+    left: 50%;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 20;
+    opacity: 1;
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: rgba(42, 18, 16, 0.7);
+    border: 1px solid rgba(242, 232, 219, 0.16);
+    border-radius: 999px;
+    padding: 0.4rem 0.4rem 0.4rem 1.15rem;
+    box-shadow: 0 12px 32px rgba(42, 18, 16, 0.28);
+    color: var(--text-on-dark);
+  }
+
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .bar {
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+    }
+  }
+
+  .dot {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .dot::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      opacity: 0.6;
+      animation: pulse 2.2s ease-out infinite;
+    }
+  }
+
+  @keyframes pulse {
+    to {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  .cta {
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--bg-dark);
+    background: var(--text-on-dark);
+    border-radius: 999px;
+    padding: 0.65em 1.3em;
+    white-space: nowrap;
+    box-shadow: 0 0 0 0 var(--glow-primary);
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background: var(--primary);
+    color: var(--bg-light);
+    box-shadow: 0 0 46px 8px var(--glow-primary);
+  }
+
+  /* Some no rastro do scroll da página: some cedo (antes do fold da
+     oferta dedicada) para não duplicar CTA, e reaparece se o usuário
+     voltar pra cima. Progressive enhancement — sem suporte, fica sempre
+     visível. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      .floating-cta {
+        opacity: 0;
+        pointer-events: none;
+        animation: bar-visibility linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
+  @keyframes bar-visibility {
+    0%,
+    5% {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(10px);
+    }
+    9% {
+      pointer-events: auto;
+    }
+    12%,
+    56% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    62%,
+    100% {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(10px);
+    }
+  }
+</style>

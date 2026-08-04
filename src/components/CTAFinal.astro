@@ -1,0 +1,85 @@
+---
+import { waLink, WHATSAPP_DISPLAY, EMAIL } from "../lib/consts";
+---
+
+<section class="cta-final">
+  <div class="inner">
+    <h2 class="reveal">Você é mais do que um feed bonito.</h2>
+    <p class="sub reveal">E existe um caminho pra provar isso.</p>
+    <a
+      class="cta reveal btn-glass"
+      href={waLink("Olá, Rayane! Terminei de ver a Jornada Além do Feed e quero conversar com você.")}
+    >
+      Fale comigo agora
+    </a>
+    <p class="contato reveal">
+      {WHATSAPP_DISPLAY} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta-final {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+  }
+
+  .inner {
+    max-width: 640px;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 8vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+    text-align: center;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .sub {
+    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: var(--primary-light);
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: var(--space-5);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--text-on-dark);
+    background: rgba(242, 232, 219, 0.14);
+    border: 1px solid rgba(242, 232, 219, 0.35);
+    border-radius: 999px;
+    padding: 1em 2.2em;
+    box-shadow: 0 0 0 0 var(--glow-light);
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background: rgba(180, 94, 52, 0.4);
+    border-color: rgba(180, 94, 52, 0.6);
+    color: var(--bg-light);
+    box-shadow: 0 0 64px 12px var(--glow-primary);
+  }
+
+  .contato {
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: rgba(242, 232, 219, 0.75);
+  }
+
+  .contato a {
+    color: inherit;
+  }
+</style>

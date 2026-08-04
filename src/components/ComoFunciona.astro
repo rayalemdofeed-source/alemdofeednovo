@@ -1,0 +1,169 @@
+---
+const fases = [
+  {
+    numero: "01",
+    titulo: "Descoberta",
+    texto:
+      "Briefing completo e aprofundado, estudo da sua marca pessoal, definição de posicionamento, tom de voz e pilares de conteúdo.",
+  },
+  {
+    numero: "02",
+    titulo: "Direção",
+    texto:
+      "Estratégia para Instagram e LinkedIn, calendário editorial de 6 meses e 2 encontros de acompanhamento ao longo de 2 meses.",
+  },
+  {
+    numero: "03",
+    titulo: "Autonomia",
+    texto:
+      "Roteiros de vídeo, guia de stories, guia de autoprodução de fotos e vídeos pelo celular e pack Canva no seu posicionamento.",
+  },
+  {
+    numero: "04",
+    titulo: "Registro",
+    texto:
+      "Ensaio fotográfico profissional com direção criativa, captação de 3 vídeos e vídeo manifesto — tudo editado e entregue.",
+  },
+];
+---
+
+<section class="como-funciona">
+  <div class="inner">
+    <p class="eyebrow reveal">Como funciona</p>
+    <h2 class="reveal">Do diagnóstico à entrega visual, em quatro etapas.</h2>
+    <div class="rail-wrap">
+      <span class="rail" aria-hidden="true"><span class="rail-fill"></span></span>
+      <ol class="timeline">
+        {
+          fases.map((fase) => (
+            <li class="reveal">
+              <span class="numero">{fase.numero}</span>
+              <div class="conteudo">
+                <h3>{fase.titulo}</h3>
+                <p>{fase.texto}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner {
+    max-width: 800px;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    line-height: 1.2;
+    max-width: 24ch;
+    text-wrap: balance;
+    color: var(--secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .rail-wrap {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .rail {
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rail-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--primary);
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .rail-fill {
+        transform: scaleY(0);
+        animation: rail-grow linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 95%;
+      }
+    }
+  }
+
+  @keyframes rail-grow {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .timeline li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .numero {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+  }
+
+  .conteudo h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .conteudo p {
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  @media (min-width: 640px) {
+    .timeline li {
+      grid-template-columns: 4rem 1fr;
+      gap: var(--space-4);
+    }
+  }
+</style>

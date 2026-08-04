@@ -1,0 +1,191 @@
+---
+const paraVoce = [
+  "Já é vista como competente, mas sente que essa percepção não conta a história toda",
+  "Fala com públicos muito diferentes — diretoria, equipe, clientes — e não sabe costurar isso numa identidade só",
+  "Tem repertório e experiência reais; falta estrutura pra comunicar isso com clareza",
+  "Topa um processo real de autoconhecimento antes de qualquer estratégia",
+];
+
+const naoEhParaVoce = [
+  "Quer um roteiro pronto pra copiar o que funciona com a concorrência",
+  "Prefere pular a escuta e ir direto pro passo a passo",
+  "Busca fórmula replicável, não posicionamento específico pra sua trajetória",
+];
+---
+
+<section class="para-quem">
+  <div class="inner">
+    <p class="eyebrow reveal">Pra quem é</p>
+    <h2 class="reveal">A Jornada é pensada pra mulheres profissionais que reconhecem algo nisso.</h2>
+    <div class="grid">
+      <div class="col">
+        <h3 class="reveal"><span class="icon-check" aria-hidden="true"></span>É pra você, se você</h3>
+        <ul>
+          {paraVoce.map((item) => <li class="reveal">{item}</li>)}
+        </ul>
+      </div>
+      <div class="col muted">
+        <h3 class="reveal"><span class="icon-x" aria-hidden="true"></span>Não é pra você, se você</h3>
+        <ul>
+          {naoEhParaVoce.map((item) => <li class="reveal">{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .para-quem {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+
+  .inner {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    line-height: 1.2;
+    max-width: 26ch;
+    text-wrap: balance;
+    color: var(--secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .col {
+    border-radius: 20px;
+    padding: clamp(1.5rem, 4vw, var(--space-5));
+    transition:
+      transform 320ms var(--ease-out),
+      border-color 320ms var(--ease-out),
+      box-shadow 550ms var(--ease-out),
+      background-color 320ms var(--ease-out);
+  }
+
+  .col:not(.muted) {
+    background: var(--primary-5);
+    border: 1px solid var(--primary-30);
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 0 0 0 var(--glow-primary);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .col:not(.muted):hover {
+      transform: translateY(-6px);
+      background: var(--primary-15);
+      border-color: var(--primary);
+      box-shadow: 0 24px 60px -12px var(--glow-primary);
+    }
+
+    .muted:hover {
+      transform: translateY(-6px);
+      background: rgba(103, 71, 71, 0.09);
+      border-color: var(--secondary);
+    }
+  }
+
+  .col h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .col:not(.muted) h3 {
+    color: var(--primary-dark);
+  }
+
+  .col ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .col li {
+    padding-left: 1.6em;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .col li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .muted {
+    background: rgba(103, 71, 71, 0.05);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--secondary);
+    color: var(--secondary);
+    opacity: 0.85;
+  }
+
+  .muted li::before {
+    background: var(--secondary);
+    opacity: 0.5;
+  }
+
+  .icon-check,
+  .icon-x {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
+
+  .icon-check {
+    background: currentColor;
+    color: var(--primary);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+
+  .icon-x {
+    background: currentColor;
+    color: var(--secondary);
+    opacity: 0.6;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+
+  @media (min-width: 800px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+    }
+  }
+</style>

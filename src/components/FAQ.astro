@@ -1,0 +1,146 @@
+---
+const perguntas = [
+  {
+    pergunta: "Funciona pra qualquer área, ou só pra quem vem da saúde?",
+    resposta:
+      "O Além do Feed nasceu com raízes fortes no universo da saúde, mas a Jornada é pensada para mulheres profissionais de diversas áreas — o método parte de quem você é, não de um nicho fechado.",
+  },
+  {
+    pergunta: "Preciso já saber meu posicionamento antes de começar?",
+    resposta:
+      "Não. É o contrário: a Jornada começa pela escuta, não pela estratégia pronta. Se você já soubesse seu posicionamento com clareza, não precisaria do processo.",
+  },
+  {
+    pergunta: "É só pra quem já tem Instagram grande?",
+    resposta:
+      "Não. O feed é uma ferramenta, não a história toda. A Jornada trabalha presença em todos os pontos de contato — não só no número de seguidores.",
+  },
+  {
+    pergunta: "Em quanto tempo eu vejo resultado?",
+    resposta:
+      "A Jornada dura três meses e termina em entrega concreta: posicionamento definido, calendário editorial, guias de autoprodução, ensaio fotográfico e vídeos editados — não numa promessa abstrata.",
+  },
+];
+---
+
+<section class="faq">
+  <div class="inner">
+    <p class="eyebrow reveal">Perguntas</p>
+    <h2 class="reveal">Antes de decidir</h2>
+    <div class="lista reveal">
+      {
+        perguntas.map((item) => (
+          <details>
+            <summary>{item.pergunta}</summary>
+            <p>{item.resposta}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .inner {
+    max-width: 700px;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+    color: var(--secondary);
+    margin-bottom: var(--space-5);
+  }
+
+  .lista {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  details {
+    border-bottom: 1px solid var(--border);
+    padding-block: var(--space-3);
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color 160ms var(--ease-out);
+  }
+
+  summary:hover,
+  summary:focus-visible {
+    color: var(--primary);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    transition: transform 220ms var(--ease-out);
+  }
+
+  details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  details p {
+    margin-top: var(--space-2);
+    line-height: 1.65;
+    color: var(--text-on-light);
+  }
+
+  /* Abertura suave do conteúdo — só em navegadores com suporte a
+     transições discretas de altura. Sem suporte, cai no comportamento
+     nativo instantâneo (sem regressão). */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (transition-behavior: allow-discrete) {
+      details {
+        interpolate-size: allow-keywords;
+      }
+
+      details::details-content {
+        height: 0;
+        overflow: hidden;
+        transition:
+          height 260ms var(--ease-out),
+          content-visibility 260ms allow-discrete;
+      }
+
+      details[open]::details-content {
+        height: auto;
+      }
+    }
+  }
+</style>

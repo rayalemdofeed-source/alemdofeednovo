@@ -1,0 +1,210 @@
+/* Reset mínimo — base responsiva e compatível, sem framework.
+   Estilos específicos de cada landing page entram depois. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:root {
+  /* Paleta — DNA Além do Feed */
+  --primary: #b45e34;
+  --primary-light: #d89676;
+  --primary-dark: #6b3a1f;
+  --primary-5: rgba(180, 94, 52, 0.05);
+  --primary-15: rgba(180, 94, 52, 0.15);
+  --primary-30: rgba(180, 94, 52, 0.3);
+  --secondary: #674747;
+
+  --bg-light: #f2e8db;
+  --bg-dark: #2a1210;
+  --text-on-light: #3a1f14;
+  --text-on-dark: #f2e8db;
+  --border: #d8c9b4;
+  --surface: #fbf6ee;
+
+  /* Tipografia — Fraunces (stand-in de Ivypresto Display/Text via optical size)
+     + IBM Plex Mono para tags/metadados. Trocar por Ivypresto quando o kit
+     Adobe Fonts do projeto estiver disponível. */
+  --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+  --font-body: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  /* Easing — curvas com "punch", não as padrão do CSS */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Glow — usado no hover dos botões glass. Bem mais transparente que a
+     cor sólida: é pra ser um halo suave, não um contorno nítido. */
+  --glow-primary: rgba(180, 94, 52, 0.28);
+  --glow-light: rgba(242, 232, 219, 0.25);
+}
+
+/* Botão glass — mecânica compartilhada por todos os CTAs (blur, brilho
+   deslizante, elevação). Cada componente define sua própria cor/tinta. */
+.btn-glass {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background-color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out),
+    color 220ms var(--ease-out),
+    box-shadow 1100ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .btn-glass {
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+  }
+}
+
+.btn-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(
+    115deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-glass::before {
+    transition: left 550ms var(--ease-out);
+  }
+
+  .btn-glass:hover::before,
+  .btn-glass:focus-visible::before {
+    left: 130%;
+  }
+
+  .btn-glass:hover,
+  .btn-glass:focus-visible {
+    transform: translateY(-2px);
+  }
+}
+
+.btn-glass:active {
+  transform: translateY(0) scale(0.96);
+}
+
+body {
+  min-height: 100svh;
+  background: var(--bg-light);
+  color: var(--text-on-light);
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grão sutil — textura editorial cobrindo a página inteira. Ruído gerado
+   via SVG (sem requisição extra), fixo na tela, não intercepta clique. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+/* Scroll-reveal — progressive enhancement via CSS Scroll-driven Animations.
+   Sem @supports, o elemento fica só com opacity/transform padrão (visível).
+   Zero JS: navegadores sem suporte simplesmente não animam. */
+.reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Entrada de página — roda uma única vez, então pode ser mais expressiva */
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: enter-in 700ms var(--ease-out) both;
+  }
+}
+
+@keyframes enter-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  overflow-wrap: break-word;
+}

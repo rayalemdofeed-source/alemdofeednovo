@@ -1,0 +1,186 @@
+---
+import { Image } from "astro:assets";
+import karinaSolo from "../assets/karina/karina-solo.jpg";
+import karinaSessao from "../assets/karina/karina-sessao.jpg";
+---
+
+<section class="depoimento">
+  <div class="inner">
+    <p class="eyebrow reveal">Prova real</p>
+    <h2 class="reveal">Quem já fez a Jornada</h2>
+
+    <div class="conteudo">
+      <blockquote class="quote reveal">
+        <p>
+          Saí da Jornada com clareza sobre quem eu sou e com as ferramentas
+          pra comunicar isso sozinha. Não dependo de ninguém pra me
+          posicionar hoje.
+        </p>
+        <footer>
+          <strong>Karina</strong>
+          <span>Jornada Além do Feed</span>
+        </footer>
+      </blockquote>
+
+      <div class="midia">
+        <div class="foto reveal">
+          <Image
+            src={karinaSolo}
+            alt="Karina sorrindo, segurando um caderno, em pé numa sala com estante e planta"
+            width={400}
+            height={500}
+            widths={[300, 400, 600]}
+            sizes="(min-width: 800px) 24vw, 45vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="foto reveal">
+          <Image
+            src={karinaSessao}
+            alt="Karina conversando com Rayane durante a Jornada, num ambiente claro e acolhedor"
+            width={400}
+            height={500}
+            widths={[300, 400, 600]}
+            sizes="(min-width: 800px) 24vw, 45vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="video reveal">
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            poster="/video/depoimento-poster.jpg"
+          >
+            <source src="/video/depoimento-karina.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .depoimento {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+
+  .inner {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    color: var(--secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .conteudo {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .quote {
+    margin: 0;
+  }
+
+  .quote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+    line-height: 1.55;
+    color: var(--text-on-light);
+    text-wrap: pretty;
+  }
+
+  .quote footer {
+    margin-top: var(--space-3);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    font-family: var(--font-mono);
+  }
+
+  .quote footer strong {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    color: var(--primary-dark);
+  }
+
+  .quote footer span {
+    font-size: 0.78rem;
+    color: var(--secondary);
+  }
+
+  .midia {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .foto,
+  .video {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition:
+      transform 320ms var(--ease-out),
+      border-color 320ms var(--ease-out),
+      box-shadow 500ms var(--ease-out);
+  }
+
+  .foto {
+    aspect-ratio: 4 / 5;
+  }
+
+  .foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .video {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-dark);
+  }
+
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .foto:hover,
+    .video:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 44px -18px var(--glow-primary);
+    }
+  }
+
+  @media (min-width: 800px) {
+    .conteudo {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+</style>

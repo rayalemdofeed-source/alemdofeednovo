@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import foto from "../assets/fotos/autoridade-caderno.jpg";
+---
+
+<section class="autoridade">
+  <div class="inner">
+    <div class="figure reveal">
+      <Image
+        src={foto}
+        alt="Rayane Guimarães sorrindo, sentada à mesa com um caderno e uma xícara de café"
+        width={760}
+        height={1013}
+        widths={[320, 560, 760]}
+        sizes="(min-width: 900px) 38vw, 100vw"
+        loading="lazy"
+      />
+    </div>
+    <div class="copy">
+      <p class="eyebrow reveal">Quem conduz</p>
+      <h2 class="reveal">Uma jornalista, não uma fórmula.</h2>
+      <p class="reveal">
+        Rayane Guimarães é jornalista há mais de dez anos, especialista em
+        comunicação estratégica e fundadora da Astro, agência de comunicação
+        em saúde onde atua há nove anos. Antes de estruturar qualquer
+        posicionamento, ela pergunta por quê — foi esse olhar, aplicado a
+        marcas pessoais de profissionais de saúde e depois a outras áreas,
+        que deu origem ao Além do Feed.
+      </p>
+      <p class="quote reveal">
+        O diferencial não está só no que ela entrega. Está em como ela
+        escuta.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .autoridade {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+
+  .inner {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .figure {
+    border-radius: 4px 4px 200px 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .figure :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transform: scale(1.14);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .figure :global(img) {
+        animation: img-parallax linear both;
+        animation-timeline: view();
+      }
+    }
+  }
+
+  @keyframes img-parallax {
+    from {
+      transform: scale(1.14) translateY(-4%);
+    }
+    to {
+      transform: scale(1.14) translateY(4%);
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    line-height: 1.2;
+    text-wrap: balance;
+    color: var(--secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .copy p {
+    line-height: 1.7;
+    max-width: 52ch;
+  }
+
+  .quote {
+    margin-top: var(--space-3);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--primary-dark);
+  }
+
+  @media (min-width: 800px) {
+    .inner {
+      grid-template-columns: 0.8fr 1fr;
+    }
+  }
+</style>

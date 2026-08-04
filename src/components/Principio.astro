@@ -1,0 +1,113 @@
+---
+---
+
+<section class="principio">
+  <div class="inner">
+    <p class="eyebrow reveal">O método</p>
+    <p class="statement reveal">
+      <span class="circle-wrap">
+        Escuta antes de estratégia.
+        <svg
+          class="circle-draw"
+          viewBox="0 0 320 110"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M6,55 A154,49 0 1,1 314,55 A154,49 0 1,1 6,55 Z"
+            pathLength="100"></path>
+        </svg>
+      </span>
+    </p>
+    <p class="body reveal">
+      O processo não começa com plano de conteúdo. Começa com uma pergunta
+      simples e verdadeira: o que está por trás de quem você é? A estratégia
+      só faz sentido depois disso — porque nasce de você, não de um template
+      que serve pra qualquer pessoa.
+    </p>
+  </div>
+</section>
+
+<style>
+  .principio {
+    background: var(--bg-dark);
+    color: var(--text-on-dark);
+  }
+
+  .inner {
+    max-width: 640px;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 8vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+    text-align: center;
+    border-top: 6px solid var(--primary);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .statement {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .circle-wrap {
+    position: relative;
+    display: inline-block;
+    padding: 0.2em 0.35em;
+  }
+
+  .circle-draw {
+    position: absolute;
+    inset: -0.3em -0.45em;
+    width: calc(100% + 0.9em);
+    height: calc(100% + 0.6em);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .circle-draw path {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    vector-effect: non-scaling-stroke;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .circle-draw path {
+        stroke-dashoffset: 100;
+        animation: circle-draw-in linear both;
+        animation-timeline: view();
+        animation-range: cover 15% cover 65%;
+      }
+    }
+  }
+
+  @keyframes circle-draw-in {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .body {
+    margin-top: var(--space-4);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(242, 232, 219, 0.8);
+  }
+</style>

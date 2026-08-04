@@ -1,0 +1,77 @@
+---
+---
+
+<section class="video-strip" aria-hidden="true">
+  <video
+    class="clip"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/video/poster.jpg"
+  >
+    <source src="/video/cena1.mp4" type="video/mp4" />
+  </video>
+  <img class="fallback" src="/video/poster.jpg" alt="" width="1600" height="900" loading="lazy" />
+  <div class="wash"></div>
+</section>
+
+<style>
+  .video-strip {
+    position: relative;
+    height: clamp(280px, 42vw, 520px);
+    overflow: hidden;
+    background: var(--bg-dark);
+  }
+
+  .clip,
+  .fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .clip {
+        transform: scale(1.15);
+        animation: strip-settle linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 100%;
+      }
+    }
+  }
+
+  @keyframes strip-settle {
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .fallback {
+    display: none;
+  }
+
+  .wash {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-dark);
+    opacity: 0.6;
+  }
+
+  /* Sem preferência de movimento reduzido: vídeo ambiente, sem controles,
+     puramente decorativo. Com a preferência ativa, trocamos por uma
+     imagem estática — zero JS, só CSS. */
+  @media (prefers-reduced-motion: reduce) {
+    .clip {
+      display: none;
+    }
+
+    .fallback {
+      display: block;
+    }
+  }
+</style>

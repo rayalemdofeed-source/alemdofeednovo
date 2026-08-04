@@ -1,0 +1,74 @@
+---
+const frases = ["Além do Feed", "Tradução de identidade", "Escuta com entrega"];
+---
+
+<div class="marquee-outer" aria-hidden="true">
+  <div class="marquee-track">
+    {
+      [0, 1].map(() => (
+        <span class="marquee-group">
+          {frases.map((frase) => (
+            <span class="item">
+              <span class="txt">{frase}</span>
+              <span class="dot">✦</span>
+            </span>
+          ))}
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee-outer {
+    overflow: hidden;
+    background: var(--bg-dark);
+    border-bottom: 1px solid rgba(242, 232, 219, 0.12);
+    padding-block: 0.85rem;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-track {
+      animation: marquee-scroll 24s linear infinite;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-group {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-inline: 1rem;
+  }
+
+  .txt {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-on-dark);
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+
+  .dot {
+    font-size: 0.6rem;
+    color: var(--primary-light);
+  }
+</style>

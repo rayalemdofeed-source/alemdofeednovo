@@ -1,0 +1,307 @@
+---
+import { Image } from "astro:assets";
+import hero from "../assets/fotos/hero-arcos.jpg";
+import { waLink } from "../lib/consts";
+---
+
+<section class="hero" id="topo">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="copy">
+      <p class="eyebrow enter">Jornada Além do Feed</p>
+      <h1 class="enter" style="animation-delay: 60ms">
+        Presença real, <em
+          >traduzida com método.
+          <svg
+            class="scribble"
+            viewBox="0 0 400 40"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4,24 C 40,6 66,38 104,20 C 142,2 172,36 214,18 C 252,2 280,34 320,16 C 344,6 362,20 378,12"
+              pathLength="100"></path>
+          </svg>
+        </em>
+      </h1>
+      <p class="lead enter" style="animation-delay: 140ms">
+        Acompanhamento para transformar o que você já é em posicionamento,
+        presença e material visual profissional. Sem fórmula pronta, sem
+        personagem novo — só o que já existe em você, com estrutura em
+        volta.
+      </p>
+      <a
+        class="cta enter btn-glass"
+        style="animation-delay: 220ms"
+        href={waLink("Olá, Rayane! Vi a Jornada Além do Feed no site e quero começar a minha.")}
+      >
+        Quero a Jornada
+      </a>
+    </div>
+    <div class="figure enter" style="animation-delay: 120ms">
+      <Image
+        src={hero}
+        alt="Rayane Guimarães sorrindo diante de uma fachada com arcadas, em dia ensolarado"
+        width={1000}
+        height={1333}
+        widths={[400, 700, 1000]}
+        sizes="(min-width: 900px) 42vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    --mx1: 14%;
+    --my1: 20%;
+    --mx2: 86%;
+    --my2: 80%;
+    position: relative;
+    background: var(--bg-light);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, var(--space-7)) clamp(1.25rem, 5vw, 4rem);
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .glow::before,
+  .glow::after {
+    content: "";
+    position: absolute;
+    width: min(50vw, 620px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(90px);
+    translate: -50% -50%;
+    will-change: left, top;
+  }
+
+  .glow::before {
+    left: var(--mx1);
+    top: var(--my1);
+    background: var(--primary);
+    opacity: 0.24;
+  }
+
+  .glow::after {
+    left: var(--mx2);
+    top: var(--my2);
+    background: var(--secondary);
+    opacity: 0.2;
+  }
+
+  .copy,
+  .figure {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero:not(.mouse-active) .glow::before {
+      animation: glow-drift-a 20s var(--ease-in-out) infinite alternate;
+    }
+
+    .hero:not(.mouse-active) .glow::after {
+      animation: glow-drift-b 24s var(--ease-in-out) infinite alternate;
+    }
+  }
+
+  @keyframes glow-drift-a {
+    from {
+      left: 8%;
+      top: 12%;
+    }
+    to {
+      left: 32%;
+      top: 52%;
+    }
+  }
+
+  @keyframes glow-drift-b {
+    from {
+      left: 92%;
+      top: 88%;
+    }
+    to {
+      left: 66%;
+      top: 46%;
+    }
+  }
+
+  .copy {
+    max-width: 52ch;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-3);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--secondary);
+  }
+
+  h1 em {
+    position: relative;
+    font-style: italic;
+    color: var(--primary);
+  }
+
+  .scribble {
+    position: absolute;
+    left: -0.02em;
+    right: -0.02em;
+    bottom: -0.22em;
+    width: calc(100% + 0.04em);
+    height: 0.42em;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .scribble path {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.75;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .scribble path {
+      stroke-dashoffset: 100;
+      animation: scribble-in 650ms var(--ease-out) 550ms both;
+    }
+  }
+
+  @keyframes scribble-in {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .lead {
+    margin-top: var(--space-3);
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--bg-light);
+    background: rgba(180, 94, 52, 0.82);
+    border: 1px solid rgba(242, 232, 219, 0.3);
+    border-radius: 999px;
+    padding: 0.95em 2em;
+    box-shadow: 0 0 0 0 var(--glow-primary);
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background: rgba(107, 58, 31, 0.88);
+    box-shadow: 0 0 64px 12px var(--glow-primary);
+  }
+
+  .figure {
+    border-radius: 260px 260px 4px 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .figure :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transform: scale(1.14);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .figure :global(img) {
+        animation: img-parallax linear both;
+        animation-timeline: view();
+      }
+    }
+  }
+
+  @keyframes img-parallax {
+    from {
+      transform: scale(1.14) translateY(-4%);
+    }
+    to {
+      transform: scale(1.14) translateY(4%);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr 0.85fr;
+    }
+  }
+</style>
+
+<script>
+  // Ilha mínima: a bolha de fundo do hero segue o mouse em telas com
+  // ponteiro fino (desktop). Em touch, mantém a deriva automática do CSS.
+  const hero = document.querySelector<HTMLElement>(".hero");
+  const canHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (hero && canHover && !reduceMotion) {
+    hero.addEventListener("pointermove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.classList.add("mouse-active");
+      hero.style.setProperty("--mx1", `${x}%`);
+      hero.style.setProperty("--my1", `${y}%`);
+      hero.style.setProperty("--mx2", `${100 - x}%`);
+      hero.style.setProperty("--my2", `${100 - y}%`);
+    });
+
+    hero.addEventListener("pointerleave", () => {
+      hero.classList.remove("mouse-active");
+    });
+  }
+</script>
