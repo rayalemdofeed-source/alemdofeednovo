@@ -12,18 +12,19 @@ import { waLink } from "../lib/consts";
       <p class="eyebrow enter">Jornada Além do Feed</p>
       <h1 class="enter" style="animation-delay: 60ms">
         Posicionamento real, <em
-          >traduzido com método.
-          <svg
-            class="scribble"
-            viewBox="0 0 400 40"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M4,24 C 40,6 66,38 104,20 C 142,2 172,36 214,18 C 252,2 280,34 320,16 C 344,6 362,20 378,12"
-              pathLength="100"></path>
-          </svg>
-        </em>
+          >traduzido com <span class="scribble-wrap"
+            >método<svg
+              class="scribble"
+              viewBox="0 0 400 40"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4,24 C 40,6 66,38 104,20 C 142,2 172,36 214,18 C 252,2 280,34 320,16 C 344,6 362,20 378,12"
+                pathLength="100"></path>
+            </svg></span
+          >.</em
+        >
       </h1>
       <p class="lead enter" style="animation-delay: 140ms">
         O Além do Feed é uma consultoria de marca pessoal para mulheres que
@@ -32,7 +33,7 @@ import { waLink } from "../lib/consts";
       <a
         class="cta enter btn-glass"
         style="animation-delay: 220ms"
-        href={waLink("Olá, Rayane! Vi a Jornada Além do Feed no site e quero começar a minha.")}
+        href={waLink("Oii Ray 🤎 vi a Jornada no site e já quero começar a minha")}
       >
         Quero a Jornada
       </a>
@@ -54,10 +55,8 @@ import { waLink } from "../lib/consts";
 
 <style>
   .hero {
-    --mx1: 14%;
-    --my1: 20%;
-    --mx2: 86%;
-    --my2: 80%;
+    --mx1: 12%;
+    --my1: 18%;
     position: relative;
     background: var(--bg-light);
     overflow: hidden;
@@ -89,10 +88,8 @@ import { waLink } from "../lib/consts";
   .glow::after {
     content: "";
     position: absolute;
-    width: min(50vw, 620px);
     aspect-ratio: 1;
     border-radius: 50%;
-    filter: blur(90px);
     translate: -50% -50%;
     will-change: left, top;
   }
@@ -100,15 +97,19 @@ import { waLink } from "../lib/consts";
   .glow::before {
     left: var(--mx1);
     top: var(--my1);
+    width: min(62vw, 760px);
+    filter: blur(105px);
     background: var(--primary);
-    opacity: 0.24;
+    opacity: 0.32;
   }
 
   .glow::after {
-    left: var(--mx2);
-    top: var(--my2);
+    left: 76%;
+    top: 66%;
+    width: min(50vw, 600px);
+    filter: blur(95px);
     background: var(--secondary);
-    opacity: 0.2;
+    opacity: 0.26;
   }
 
   .glow-gl {
@@ -139,33 +140,72 @@ import { waLink } from "../lib/consts";
 
   @media (prefers-reduced-motion: no-preference) {
     .hero:not(.mouse-active) .glow::before {
-      animation: glow-drift-a 20s var(--ease-in-out) infinite alternate;
+      animation: glow-drift-a 28s ease-in-out infinite;
     }
 
-    .hero:not(.mouse-active) .glow::after {
-      animation: glow-drift-b 24s var(--ease-in-out) infinite alternate;
+    .hero .glow::after {
+      animation: glow-drift-b 34s ease-in-out infinite;
     }
   }
 
   @keyframes glow-drift-a {
-    from {
-      left: 8%;
-      top: 12%;
+    0% {
+      left: 6%;
+      top: 10%;
     }
-    to {
-      left: 32%;
-      top: 52%;
+    33% {
+      left: 28%;
+      top: 38%;
+    }
+    66% {
+      left: 12%;
+      top: 46%;
+    }
+    100% {
+      left: 6%;
+      top: 10%;
     }
   }
 
   @keyframes glow-drift-b {
+    0% {
+      left: 76%;
+      top: 66%;
+    }
+    40% {
+      left: 60%;
+      top: 44%;
+    }
+    70% {
+      left: 82%;
+      top: 40%;
+    }
+    100% {
+      left: 76%;
+      top: 66%;
+    }
+  }
+
+  /* Deriva extra ligada ao scroll: soma-se ao drift automático (que já
+     roda sozinho, inclusive no mobile) para dar mais uma camada de
+     movimento reativo em quem não tem mouse pra interagir. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      .glow,
+      .glow-gl {
+        animation: glow-scroll-parallax linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 80vh;
+      }
+    }
+  }
+
+  @keyframes glow-scroll-parallax {
     from {
-      left: 92%;
-      top: 88%;
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
     to {
-      left: 66%;
-      top: 46%;
+      transform: translate3d(0, 9%, 0) rotate(2.5deg) scale(1.06);
     }
   }
 
@@ -197,6 +237,14 @@ import { waLink } from "../lib/consts";
     position: relative;
     font-style: italic;
     color: var(--primary);
+  }
+
+  /* Envolve só a palavra "método" num inline-block: garante uma única
+     caixa (nunca fragmentada em mais de uma linha), pra o SVG do rabisco
+     se ancorar num tamanho/posição confiável em qualquer largura de tela. */
+  .scribble-wrap {
+    position: relative;
+    display: inline-block;
   }
 
   .scribble {
@@ -324,8 +372,6 @@ import { waLink } from "../lib/consts";
       hero.classList.add("mouse-active");
       hero.style.setProperty("--mx1", `${x}%`);
       hero.style.setProperty("--my1", `${y}%`);
-      hero.style.setProperty("--mx2", `${100 - x}%`);
-      hero.style.setProperty("--my2", `${100 - y}%`);
     });
 
     hero.addEventListener("pointerleave", () => {
@@ -364,21 +410,34 @@ import { waLink } from "../lib/consts";
       uniform vec2 u_resolution;
       uniform vec2 u_blob1;
       uniform vec2 u_blob2;
+      uniform vec2 u_blob3;
       uniform float u_radius1;
       uniform float u_radius2;
+      uniform float u_radius3;
       uniform vec3 u_color1;
       uniform vec3 u_color2;
+      uniform vec3 u_color3;
+
+      float grain(vec2 co) {
+        return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
+      }
 
       void main() {
         vec2 frag = vec2(gl_FragCoord.x, u_resolution.y - gl_FragCoord.y);
-        float d1 = distance(frag, u_blob1);
-        float d2 = distance(frag, u_blob2);
-        float a1 = 1.0 - smoothstep(0.0, u_radius1, d1);
-        float a2 = 1.0 - smoothstep(0.0, u_radius2, d2);
-        a1 = pow(a1, 1.6) * 0.55;
-        a2 = pow(a2, 1.6) * 0.45;
-        vec3 color = u_color1 * a1 + u_color2 * a2;
-        float alpha = clamp(a1 + a2, 0.0, 1.0);
+
+        float d1 = 1.0 - smoothstep(0.0, u_radius1, distance(frag, u_blob1));
+        float d2 = 1.0 - smoothstep(0.0, u_radius2, distance(frag, u_blob2));
+        float d3 = 1.0 - smoothstep(0.0, u_radius3, distance(frag, u_blob3));
+
+        float total = d1 + d2 + d3 + 0.0001;
+        vec3 mesh = (u_color1 * d1 + u_color2 * d2 + u_color3 * d3) / total;
+
+        float coverage = max(d1, max(d2, d3));
+        float alpha = pow(coverage, 1.05) * 0.62;
+
+        float n = (grain(gl_FragCoord.xy) - 0.5) * 0.1;
+        vec3 color = mesh + n;
+
         gl_FragColor = vec4(color * alpha, alpha);
       }
     `;
@@ -420,15 +479,19 @@ import { waLink } from "../lib/consts";
       resolution: gl.getUniformLocation(program, "u_resolution"),
       blob1: gl.getUniformLocation(program, "u_blob1"),
       blob2: gl.getUniformLocation(program, "u_blob2"),
+      blob3: gl.getUniformLocation(program, "u_blob3"),
       radius1: gl.getUniformLocation(program, "u_radius1"),
       radius2: gl.getUniformLocation(program, "u_radius2"),
+      radius3: gl.getUniformLocation(program, "u_radius3"),
       color1: gl.getUniformLocation(program, "u_color1"),
       color2: gl.getUniformLocation(program, "u_color2"),
+      color3: gl.getUniformLocation(program, "u_color3"),
     };
 
-    // Cores da marca (terracota + marrom-vinho), 0..1
+    // Cores da marca: terracota, vinho mais saturado, terracota claro. 0..1
     gl.uniform3f(u.color1, 180 / 255, 94 / 255, 52 / 255);
-    gl.uniform3f(u.color2, 103 / 255, 71 / 255, 71 / 255);
+    gl.uniform3f(u.color2, 140 / 255, 64 / 255, 64 / 255);
+    gl.uniform3f(u.color3, 216 / 255, 150 / 255, 118 / 255);
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -476,6 +539,19 @@ import { waLink } from "../lib/consts";
     };
     let start = performance.now();
 
+    // Deriva ligada ao scroll: além do mouse (desktop) e da órbita
+    // automática, o mesh também reage a rolar a página — assim quem
+    // não tem mouse (trackpad parado, etc.) ainda vê o fundo vivo.
+    let scrollShift = 0;
+    function updateScroll() {
+      const rect = hero.getBoundingClientRect();
+      const total = rect.height + window.innerHeight;
+      const passed = window.innerHeight - rect.top;
+      scrollShift = Math.min(1, Math.max(0, passed / total));
+    }
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    updateScroll();
+
     function frame(now: number) {
       raf = requestAnimationFrame(frame);
       if (!visible) return;
@@ -491,13 +567,23 @@ import { waLink } from "../lib/consts";
         curY = 0.24 + Math.cos(t * 0.2) * 0.12;
       }
 
-      const b2x = 0.82 + Math.sin(t * 0.18 + 2.0) * 0.08;
-      const b2y = 0.76 + Math.cos(t * 0.22 + 1.0) * 0.1;
+      // Blob 2 e 3 fluem sozinhos o tempo todo, em órbitas com períodos
+      // diferentes, pra nunca repetir o mesmo desenho — é isso que dá a
+      // sensação de gradiente "vivo" em vez de uma mancha parada.
+      const b2x = 0.72 + Math.sin(t * 0.14 + 1.3) * 0.14;
+      const b2y = 0.28 + Math.cos(t * 0.11 + 0.4) * 0.16;
+      const b3x = 0.42 + Math.sin(t * 0.09 + 3.1) * 0.22;
+      const b3y = 0.82 + Math.cos(t * 0.13 + 2.2) * 0.14;
 
-      gl!.uniform2f(u.blob1, curX * width, curY * height);
-      gl!.uniform2f(u.blob2, b2x * width, b2y * height);
-      gl!.uniform1f(u.radius1, Math.min(width, height) * 0.55);
-      gl!.uniform1f(u.radius2, Math.min(width, height) * 0.48);
+      const shift = scrollShift * 0.1;
+
+      const minSide = Math.min(width, height);
+      gl!.uniform2f(u.blob1, curX * width, (curY + shift) * height);
+      gl!.uniform2f(u.blob2, b2x * width, (b2y + shift * 0.6) * height);
+      gl!.uniform2f(u.blob3, b3x * width, (b3y - shift * 0.5) * height);
+      gl!.uniform1f(u.radius1, minSide * 0.58);
+      gl!.uniform1f(u.radius2, minSide * 0.5);
+      gl!.uniform1f(u.radius3, minSide * 0.56);
 
       gl!.clearColor(0, 0, 0, 0);
       gl!.clear(gl!.COLOR_BUFFER_BIT);
