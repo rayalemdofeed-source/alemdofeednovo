@@ -1,0 +1,673 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { waLink } from "../lib/consts";
+
+const fases = [
+  {
+    semana: "Semanas 1–2",
+    titulo: "Fundação",
+    texto:
+      "Briefing, imersão no mercado de ativos logísticos, ICP e buyer persona do produto de paletes, plataforma de marca da Logt.",
+    entrega: "Documento de marca + território de discurso definido.",
+  },
+  {
+    semana: "Semana 3",
+    titulo: "Perfil no ar + munição",
+    texto:
+      "Reposicionamento completo do perfil (headline, sobre, banner, direção de foto) e banco de pautas com 20 temas por pilar.",
+    entrega:
+      "Perfil reposicionado + banco de pautas + arco narrativo até o lançamento.",
+  },
+  {
+    semana: "Semanas 4–5",
+    titulo: "Produção estática",
+    texto:
+      "Redação e design de 10 posts (imagem única e carrossel) e roteirização dos 5 vídeos.",
+    entrega: "10 posts prontos + 5 roteiros aprovados.",
+  },
+  {
+    semana: "Semana 6",
+    titulo: "Captação",
+    texto: "Gravação com direção dos 5 vídeos.",
+    entrega: "5 vídeos gravados.",
+  },
+  {
+    semana: "Semanas 7–8",
+    titulo: "Edição",
+    texto: "Edição dos 5 vídeos.",
+    entrega: "5 vídeos prontos para publicar.",
+  },
+];
+
+const entregaveis = [
+  "Documento de marca + território de discurso",
+  "Perfil do LinkedIn reposicionado",
+  "Banco de pautas com 20 temas",
+  "10 posts prontos para publicar",
+  "5 vídeos roteirizados, gravados e editados",
+];
+---
+
+<Layout
+  title="Orçamento — Além do Feed × Logt"
+  description="Posicionamento e conteúdo pra aquecer o LinkedIn da Logt antes do lançamento da linha de paletes."
+>
+  <main class="orcamento">
+    <div class="ambient" aria-hidden="true"></div>
+
+    <div class="inner">
+      <header class="masthead enter">
+        <div class="brand">
+          <span class="mark">Além do Feed <em>· Ray</em></span>
+          <span class="role">Posicionamento &amp; conteúdo</span>
+        </div>
+        <div class="doc-meta">
+          <div>Válido até <strong>24.08.2026</strong></div>
+        </div>
+      </header>
+
+      <div class="title-block enter" style="animation-delay: 60ms">
+        <div>
+          <h1>Orçamento</h1>
+          <p class="subtitle">
+            Posicionamento e conteúdo pra aquecer o LinkedIn antes do
+            lançamento da linha de paletes.
+          </p>
+        </div>
+        <div class="for-block">
+          <div class="label">Preparado para</div>
+          <div class="company">Logt</div>
+        </div>
+      </div>
+
+      <p class="intro enter" style="animation-delay: 120ms">
+        A ideia é simples: usar as próximas semanas pra construir um
+        posicionamento que já nasce separando os dois braços da Logt, e
+        chegar no lançamento da linha de paletes com uma presença aquecida —
+        não uma estreia do zero. Abaixo está o caminho e o investimento pra
+        gente começar.
+      </p>
+
+      <section class="section">
+        <p class="eyebrow reveal">O caminho — 8 semanas</p>
+        <div class="trilha-wrap">
+          <span class="trilha" aria-hidden="true"
+            ><span class="trilha-fill"></span></span
+          >
+          <ol class="trilha-lista">
+            {
+              fases.map((fase) => (
+                <li class="reveal">
+                  <span class="ponto" aria-hidden="true" />
+                  <div class="fase-conteudo">
+                    <span class="semana">{fase.semana}</span>
+                    <h3>{fase.titulo}</h3>
+                    <p>{fase.texto}</p>
+                    <p class="entrega">{fase.entrega}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <div class="ancora reveal">
+        <p class="eyebrow">Por que 8 semanas</p>
+        <p>
+          15 conteúdos publicando 2x por semana somam cerca de 8 semanas de
+          operação. Junto às 8 semanas de projeto, dá exatamente os 3 a 4
+          meses de aquecimento que a Logt precisa antes de lançar o produto.
+        </p>
+      </div>
+
+      <section class="investimento reveal">
+        <p class="eyebrow">Investimento</p>
+        <div class="valor-bloco">
+          <span class="valor-total">R$ 4.000,00</span>
+          <span class="valor-desc">
+            Projeto completo — posicionamento estratégico + produção de
+            conteúdo, 8 semanas / 2 meses
+          </span>
+        </div>
+
+        <div class="entregaveis">
+          <span class="rotulo">O que está incluso</span>
+          <ul>
+            {entregaveis.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        <div class="termos">
+          <div>
+            <span class="rotulo">Forma de pagamento</span>
+            <span class="valor-termo">2x no Pix</span>
+          </div>
+          <div>
+            <span class="rotulo">Validade da proposta</span>
+            <span class="valor-termo">Até 24.08.2026</span>
+          </div>
+        </div>
+
+        <a
+          class="aceitar btn-glass"
+          href={waLink("Vamos em frente, Ray! 🤎")}
+        >
+          Vamos em frente, Ray!
+        </a>
+      </section>
+
+      <div class="closing reveal">
+        <div>
+          <p class="pergunta">Topa começar?</p>
+          <div class="assinatura">
+            Ray
+            <span>Além do Feed — posicionamento pessoal</span>
+          </div>
+        </div>
+        <a
+          class="cta btn-glass"
+          href={waLink(
+            "Oii Ray 🤎 vi a proposta da Logt e bora fechar",
+          )}
+        >
+          Falar com Ray
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .orcamento {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-light);
+  }
+
+  .ambient {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    translate: -50% 0;
+    width: min(70vw, 900px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.1;
+    filter: blur(140px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, var(--space-7)) clamp(1.25rem, 5vw, 3rem)
+      var(--space-7);
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding-bottom: var(--space-3);
+    border-bottom: 1.5px solid var(--secondary);
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .brand .mark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .brand .mark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--primary);
+  }
+
+  .brand .role {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  .doc-meta {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .doc-meta strong {
+    color: var(--text-on-light);
+    font-weight: 600;
+  }
+
+  /* ---------- title block ---------- */
+
+  .title-block {
+    margin-top: var(--space-5);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3) var(--space-4);
+    align-items: end;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--secondary);
+  }
+
+  .subtitle {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--primary);
+    max-width: 34ch;
+    text-wrap: balance;
+  }
+
+  .for-block {
+    text-align: right;
+  }
+
+  .for-block .label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 0.4rem;
+  }
+
+  .for-block .company {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--text-on-light);
+  }
+
+  /* ---------- intro ---------- */
+
+  .intro {
+    margin-top: var(--space-4);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  /* ---------- section / eyebrow ---------- */
+
+  .section {
+    margin-top: var(--space-6);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 var(--space-4);
+  }
+
+  /* ---------- trilha (caminho de 8 semanas) ---------- */
+
+  .trilha-wrap {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .trilha {
+    position: absolute;
+    left: 5px;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .trilha-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 130px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--primary) 45%,
+      var(--primary) 55%,
+      transparent
+    );
+    top: -160px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .trilha-fill {
+        animation: trilha-scan linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+      }
+    }
+  }
+
+  @keyframes trilha-scan {
+    from {
+      top: -160px;
+    }
+    to {
+      top: 100%;
+    }
+  }
+
+  .trilha-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .trilha-lista li {
+    position: relative;
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trilha-lista li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .ponto {
+    position: absolute;
+    left: -2.02rem;
+    top: 0.35rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    border: 2px solid var(--primary);
+  }
+
+  .semana {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .fase-conteudo h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--secondary);
+    margin: 0 0 var(--space-1);
+  }
+
+  .fase-conteudo p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .fase-conteudo .entrega {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    font-size: 0.86rem;
+  }
+
+  .fase-conteudo .entrega::before {
+    content: "→ ";
+    font-style: normal;
+    color: var(--primary);
+  }
+
+  /* ---------- value anchor ---------- */
+
+  .ancora {
+    margin-top: var(--space-6);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--primary-30);
+    border-bottom: 1px solid var(--primary-30);
+  }
+
+  .ancora p:last-child {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--secondary);
+    max-width: 58ch;
+    text-wrap: balance;
+  }
+
+  /* ---------- investimento ---------- */
+
+  .investimento {
+    margin-top: var(--space-6);
+  }
+
+  .valor-bloco {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-bottom: var(--space-3);
+    border-bottom: 1.5px solid var(--secondary);
+  }
+
+  .valor-total {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 3.2rem);
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .valor-desc {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    max-width: 46ch;
+  }
+
+  .entregaveis {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--primary-30);
+    border-radius: 14px;
+  }
+
+  .entregaveis .rotulo {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .entregaveis ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .entregaveis li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: var(--text-on-light);
+  }
+
+  .entregaveis li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .termos {
+    margin-top: var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .termos .rotulo {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 0.3rem;
+  }
+
+  .aceitar {
+    display: block;
+    margin-top: var(--space-5);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--bg-light);
+    background: var(--primary);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 1.1em;
+    box-shadow: 0 10px 36px -10px var(--glow-primary);
+  }
+
+  .aceitar:hover,
+  .aceitar:focus-visible {
+    background: var(--primary-dark);
+    box-shadow: 0 0 64px 14px var(--glow-primary);
+  }
+
+  .termos .valor-termo {
+    font-size: 0.95rem;
+    color: var(--text-on-light);
+    font-weight: 600;
+  }
+
+  /* ---------- closing ---------- */
+
+  .closing {
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: 1.5px solid var(--secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .pergunta {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--secondary);
+    margin: 0 0 0.4rem;
+  }
+
+  .assinatura {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .assinatura span {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--secondary);
+    margin-top: 0.2rem;
+  }
+
+  .cta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--bg-light);
+    background: rgba(180, 94, 52, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.9em 1.9em;
+    white-space: nowrap;
+    box-shadow: 0 0 0 0 var(--glow-primary);
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background: rgba(107, 58, 31, 0.9);
+    box-shadow: 0 0 56px 10px var(--glow-primary);
+  }
+
+  @media (max-width: 560px) {
+    .title-block {
+      grid-template-columns: 1fr;
+    }
+
+    .for-block {
+      text-align: left;
+    }
+
+    .termos {
+      grid-template-columns: 1fr;
+    }
+
+    .closing {
+      align-items: flex-start;
+    }
+  }
+</style>
