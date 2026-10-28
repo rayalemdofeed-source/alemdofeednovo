@@ -66,6 +66,33 @@ const ganchos = {
     c.querySelector('.mapa').dataset.sel = p;
     c.dataset.sel = p;
   },
+  // câmera: a partir do passo 4, aproxima um print por vez; o último passo volta pra visão geral
+  foco(c, p, instante) {
+    const alvos = [...c.querySelectorAll('.print, .cita')];
+    const ordem = c.dataset.foco.split(',').map(Number);
+    const el = p >= 4 ? alvos[ordem[p - 4]] : null;
+    const dur = instante ? 0 : 1.3, ease = 'power3.inOut';
+    const resto = [...c.children].filter(x => x !== el);
+    if (!el) {
+      if (!c._zoom) { gsap.set(c, { x: 0, y: 0, scale: 1 }); return; }
+      c._zoom = false;
+      gsap.to(c, { x: 0, y: 0, scale: 1, duration: dur, ease });
+      gsap.to(resto, { opacity: (i, x) => (x.hasAttribute('data-p') && +x.dataset.p > p) ? 0 : 1, filter: 'blur(0px)', duration: instante ? 0 : .8 });
+      gsap.to(disco, { opacity: 1, duration: instante ? 0 : .6 });
+      return;
+    }
+    const w = el.offsetWidth, h = el.offsetHeight;
+    const s = Math.min(1600 * .74 / w, 900 * .8 / h, 2.6);
+    const cx = el.offsetLeft + w / 2, cy = el.offsetTop + h / 2;
+    c._zoom = true;
+    gsap.set(c, { transformOrigin: '0 0' });
+    gsap.to(c, { x: 800 - cx * s, y: 450 - cy * s, scale: s, duration: dur, ease });
+    gsap.to(el, { opacity: 1, filter: 'blur(0px)', duration: instante ? 0 : .6 });
+    gsap.to(resto, { opacity: .12, filter: 'blur(3px)', duration: instante ? 0 : .8 });
+    gsap.to(disco, { opacity: 0, duration: instante ? 0 : .5 });
+    const grifo = el.querySelector('.grifo');
+    if (grifo) gsap.fromTo(grifo, { scaleX: 0, transformOrigin: '0 50%' }, { scaleX: 1, duration: instante ? 0 : .7, delay: instante ? 0 : 1.1, ease: 'power2.out' });
+  },
   tempo(c, p, instante) {
     const x = [200, 500, 800, 1100, 1400][p];
     moverDisco(x, 470, p === 3 ? 96 : 64, instante ? .01 : .9);
@@ -103,6 +130,7 @@ function irPara(i, p = 0) {
   if (velha && velha !== nova) {
     gsap.to(velha.children, { opacity: 0, y: -24, duration: .45, ease: 'power2.in', onComplete: () => { if (cenas[atual] !== velha) velha.classList.remove('on'); } });
   }
+  if (velha && velha !== nova && velha.dataset.gancho === 'foco') { velha._zoom = false; gsap.set(velha, { x: 0, y: 0, scale: 1, delay: .5 }); gsap.set(velha.children, { filter: 'blur(0px)', delay: .5 }); gsap.to(disco, { opacity: 1, duration: .4 }); }
   atual = i; passo = p;
   document.body.classList.toggle('escuro', nova.classList.contains('escura'));
   document.body.classList.toggle('marrom', nova.classList.contains('marrom'));
