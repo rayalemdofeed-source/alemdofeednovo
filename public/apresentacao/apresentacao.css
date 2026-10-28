@@ -283,3 +283,7 @@ body.marrom{background:#785a43}
 /* fotos do ensaio */
 .foto{width:250px;background:var(--folha);padding:10px 10px 14px;box-shadow:0 24px 60px -28px rgba(40,30,20,.7)}
 .foto img{display:block;width:100%}
+
+/* câmera: linha viva do tempo e legenda que fica fora do zoom */
+.trilho-vivo{height:3px;background:var(--acento);transform-origin:0 50%;transform:scaleX(0)}
+.legcam{position:absolute;left:120px;bottom:46px;z-index:6;font:500 20px var(--sans);color:var(--sintese);background:var(--folha);padding:12px 22px;border-radius:30px;box-shadow:0 18px 40px -22px rgba(40,30,20,.6);opacity:0;pointer-events:none}
