@@ -105,6 +105,7 @@ function irPara(i, p = 0) {
   }
   atual = i; passo = p;
   document.body.classList.toggle('escuro', nova.classList.contains('escura'));
+  document.body.classList.toggle('marrom', nova.classList.contains('marrom'));
   const [x, y, d] = discoDaCena(nova);
   gsap.set(disco, { scale: 1 });
   moverDisco(x, y, d);

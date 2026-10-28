@@ -10,7 +10,7 @@ body.escuro{background:var(--tinta)}
 
 #palco{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0}
 #disco{position:absolute;left:800px;top:450px;width:0;height:0;border-radius:50%;background:var(--acento);z-index:1;will-change:transform}
-.cena{position:absolute;inset:0;z-index:2;visibility:hidden}
+.cena{position:absolute;inset:0;z-index:3;visibility:hidden}
 .cena.on{visibility:visible}
 .cena>*{position:absolute}
 
@@ -263,3 +263,23 @@ ul.blocos li::before{content:'';width:8px;height:8px;border-radius:50%;backgroun
 .conta .total span{color:var(--apagado)}
 .conta .total b{font-size:72px;color:var(--apagado)}
 .risco{position:absolute;left:-4%;right:-4%;top:52%;height:3px;background:var(--acento);transform:rotate(-6deg)}
+
+/* ruído fino sobre o fundo */
+#ruido{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.085;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .16 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:300px 300px}
+body.escuro #ruido{mix-blend-mode:screen;opacity:.05}
+
+/* fundo marrom da foto da capa, sem transição */
+body.marrom{background:#785a43}
+.cena.marrom .painel::after{content:"";position:absolute;left:0;top:0;bottom:0;width:90px;background:linear-gradient(90deg,#785a43 0%,rgba(0,0,0,0) 100%)}
+.veu.marrom{background:linear-gradient(180deg,rgba(60,38,24,.62) 0%,rgba(40,26,16,.82) 100%)}
+/* cenas escuras com texto de papel */
+.cena.escura .sub{color:rgba(237,235,220,.88)}
+.cena.escura .verbos p{color:rgba(237,235,220,.82)}
+.cena.escura .marco h4{color:var(--papel)}
+.cena.escura .marco p{color:rgba(237,235,220,.78)}
+.cena.escura .marco i{background:var(--tinta);border-color:rgba(237,235,220,.7)}
+.cena.escura .marco.forte h4{color:var(--acento)}
+.cena.escura .trilho{background:var(--papel);opacity:.4}
+/* fotos do ensaio */
+.foto{width:250px;background:var(--folha);padding:10px 10px 14px;box-shadow:0 24px 60px -28px rgba(40,30,20,.7)}
+.foto img{display:block;width:100%}

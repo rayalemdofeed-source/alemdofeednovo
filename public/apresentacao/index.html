@@ -8,19 +8,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="apresentacao.css?v=19">
+<link rel="stylesheet" href="apresentacao.css?v=23">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 <div id="palco">
   <div id="disco"></div>
+  <div id="ruido"></div>
 
   <!-- ===== PARTE 1 · A PERGUNTA ===== -->
 
   <!-- 1 -->
   <section class="cena escura" data-nome="Abertura" data-disco="800,450,0"
     data-fala="Deixar a pergunta no ar. Perguntar se ela já viveu isso e escutar a resposta inteira antes de avançar. A história que ela contar aqui guia o resto da conversa.">
-    <div class="full"><img src="img/IMG_8460.jpg" alt="" style="object-position:50% 35%"></div><div class="veu"></div>
+    <div class="full"><img src="img/abertura.jpg" alt="" style="object-position:50% 50%"></div><div class="veu"></div>
     <div class="mini e" style="left:0;right:0;top:110px;text-align:center;color:rgba(237,235,220,.8)">Além do Feed</div>
     <div class="tit e" style="left:160px;right:160px;top:470px;text-align:center;font-size:92px;color:var(--papel)">Quantas vezes você foi a mais preparada da sala <em>e a menos lembrada?</em></div>
     <p class="sub e" style="left:0;right:0;top:760px;text-align:center;color:rgba(237,235,220,.86)">O Além do Feed nasceu dessa pergunta.</p>
@@ -45,8 +46,8 @@
   <!-- 2b -->
   <section class="cena escura" data-nome="O maior ativo" data-disco="800,450,0"
     data-fala="Só a frase. Deixar no ar.">
-    <div class="full"><img src="img/paris.jpg" alt="" style="object-position:50% 45%"></div><div class="veu"></div>
-    <div class="tit e" style="left:160px;right:160px;top:600px;text-align:center;font-size:96px;color:var(--papel)">Você é o maior ativo <em>da sua carreira</em></div>
+    <div class="full"><img src="img/ativo.jpg" alt="" style="object-position:50% 50%"></div><div class="veu" style="background:linear-gradient(90deg,rgba(28,24,20,.05) 0%,rgba(28,24,20,.72) 60%)"></div>
+    <div class="tit e" style="left:720px;right:120px;top:330px;text-align:right;font-size:92px;color:var(--papel)">Você é o maior ativo <em>da sua carreira</em></div>
   </section>
 
   <!-- 3 -->
@@ -63,10 +64,11 @@
   </section>
 
   <!-- respiro -->
-  <section class="cena" data-nome="E você?" data-disco="800,450,2400"
+  <section class="cena escura" data-nome="E você?" data-disco="800,450,0"
     data-fala="Fazer a pergunta de verdade e esperar a resposta. Depois, contar em uma frase onde eu já me vi nesses números.">
-    <div class="tit e" style="left:160px;right:160px;top:330px;text-align:center;font-size:96px;color:var(--papel)">E você, já se viu <em>em um desses números?</em></div>
-    <p class="sub" data-p="1" style="left:0;right:0;top:620px;text-align:center;font:italic 300 44px var(--serif);color:rgba(237,235,220,.9)">Eu já.</p>
+    <div class="full"><img src="img/evoce.jpg" alt="" style="object-position:50% 50%"></div><div class="veu" style="background:linear-gradient(90deg,rgba(28,24,20,.78) 0%,rgba(28,24,20,.35) 55%,rgba(28,24,20,.1) 100%)"></div>
+    <div class="tit e" style="left:120px;top:300px;width:760px;font-size:92px;color:var(--papel)">E você, já se viu <em>em um desses números?</em></div>
+    <p class="sub" data-p="1" style="left:120px;top:640px;width:600px;font:italic 300 44px var(--serif);color:rgba(237,235,220,.9)">Eu já.</p>
   </section>
 
   <!-- 4 -->
@@ -82,7 +84,7 @@
   <!-- 4b -->
   <section class="cena" data-nome="O que falta é tradução" data-disco="800,450,2400"
     data-fala="A tese da jornada numa frase.">
-    <div class="tit e" style="left:160px;right:160px;top:340px;text-align:center;font-size:96px;color:var(--papel)">Competência ela já tem. <em>O que falta é tradução</em></div>
+    <div class="tit e" style="left:160px;right:160px;top:340px;text-align:center;font-size:96px;color:var(--papel)">Competência a gente já tem. <em>O que falta é tradução</em></div>
   </section>
 
   <!-- 5 -->
@@ -103,7 +105,7 @@
   <!-- 6 -->
   <section class="cena escura" data-nome="De onde eu venho" data-disco="800,450,0"
     data-fala="Contar em primeira pessoa, devagar: nove anos na Astro, as mulheres que passaram por mim, e a frase que eu mais ouvia. Foi daí que nasceu o Além do Feed.">
-    <div class="full"><img src="img/IMG_7232.jpg" alt=""></div><div class="veu" style="background:linear-gradient(180deg,rgba(28,24,20,.6) 0%,rgba(28,24,20,.88) 70%)"></div>
+    <div class="full"><img src="img/origem.jpg" alt="" style="object-position:50% 50%"></div><div class="veu" style="background:linear-gradient(180deg,rgba(28,24,20,.6) 0%,rgba(28,24,20,.88) 70%)"></div>
     <div class="mini e" style="left:0;right:0;top:150px;text-align:center;color:rgba(237,235,220,.8)">De onde eu venho</div>
     <div class="tit e" style="left:200px;right:200px;top:215px;text-align:center;font-size:66px;color:var(--papel)">Já são quase dez anos construindo marcas pessoais. E no meio desse caminho, muitas mulheres passaram por mim com muito a oferecer <em>e sem saber como se posicionar</em></div>
     <p class="sub" data-p="1" style="left:300px;right:300px;top:640px;text-align:center;font-size:30px;color:rgba(237,235,220,.9);font-family:var(--serif);font-style:italic">O que eu mais ouvia era: "pela primeira vez, me senti ouvida".</p>
@@ -111,17 +113,19 @@
   </section>
 
   <!-- 7 -->
-  <section class="cena" data-nome="Além do Feed" data-disco="800,450,2400">
-    <div class="mini e" style="left:0;right:0;top:300px;text-align:center;color:rgba(237,235,220,.8)">Jornada Além do Feed</div>
-    <div class="tit e" style="left:0;right:0;top:355px;text-align:center;font-size:124px;color:var(--papel)">A sua marca, <em>escrita</em></div>
-    <p class="sub e" style="left:200px;right:200px;top:540px;text-align:center;color:rgba(237,235,220,.86)">Consultoria de marca pessoal pra mulheres que querem se posicionar com verdade e estratégia.</p>
+  <section class="cena escura marrom" data-nome="Além do Feed" data-disco="800,450,0">
+    <div class="painel e" style="left:700px;top:0;right:0;bottom:0"><img src="img/escrita.jpg" alt="" style="object-position:50% 50%"></div>
+    <div class="mini e" style="left:120px;top:250px;color:rgba(237,235,220,.8)">Jornada Além do Feed</div>
+    <div class="tit e" style="left:120px;top:300px;width:640px;font-size:110px;color:var(--papel)">A sua marca, <em>escrita</em></div>
+    <p class="sub e" style="left:120px;top:560px;width:540px;color:rgba(237,235,220,.88)">Consultoria de marca pessoal pra mulheres que querem se posicionar com verdade e estratégia.</p>
   </section>
 
   <!-- 8 -->
-  <section class="cena" data-nome="O método" data-disco="1480,150,240"
+  <section class="cena escura" data-nome="O método" data-disco="800,450,0"
     data-fala="Contar como é o primeiro encontro: café, caderno, e ela falando. Nada de plano de conteúdo antes de entender quem é a pessoa.">
-    <div class="mini e" style="left:120px;top:120px;color:var(--acento)">O meu método</div>
-    <div class="tit e" style="left:120px;top:170px;width:1100px;font-size:84px">Escuta antes de <em>estratégia</em></div>
+    <div class="full"><img src="img/metodo.jpg" alt=""></div><div class="veu marrom"></div>
+    <div class="mini e" style="left:120px;top:120px;color:rgba(237,235,220,.8)">O meu método</div>
+    <div class="tit e" style="left:120px;top:170px;width:1100px;font-size:84px;color:var(--papel)">Escuta antes de <em>estratégia</em></div>
     <p class="sub e" style="left:120px;top:330px;width:620px">Eu não começo com plano de conteúdo. Começo com uma pergunta simples: o que está por trás de quem você é? A estratégia só faz sentido depois disso, porque nasce de você, e não de um template que serve pra qualquer pessoa.</p>
     <div class="verbos" style="left:860px;top:330px">
       <div data-p="1"><h3>Escutar</h3><p>O que você diz e o que fica no silêncio do briefing. É ali que costuma morar a essência.</p></div>
@@ -202,6 +206,19 @@
     </div>
   </section>
 
+  <!-- o ensaio -->
+  <section class="cena" data-nome="O ensaio" data-disco="1500,110,200"
+    data-fala="As fotos vêm depois, de propósito. A fotógrafa também passou pelo Além do Feed: chega sabendo quem é a marca, e traduz arquétipos, objetivos e tom de voz em imagem. Mostrar as minhas, inclusive as mais espontâneas.">
+    <div class="mini e" style="left:120px;top:110px;color:var(--acento)">O que sai do registro</div>
+    <div class="tit e" style="left:120px;top:155px;width:620px;font-size:58px">Não só mais um ensaio, <em>mas a sua marca em imagem</em></div>
+    <p class="sub e" style="left:120px;top:420px;width:580px;font-size:22px">As fotos vêm depois, de propósito: elas traduzem a marca que já foi escrita. A fotógrafa também passou pelo Além do Feed, então chega sabendo quem você é, e os seus arquétipos, os seus objetivos e o seu tom de voz viram imagem. Fotos que facilitam a sua produção de conteúdo, mas, acima de tudo, em que você se enxerga.</p>
+    <div class="foto" style="left:790px;top:90px;transform:rotate(-4deg)"><img src="img/ensaio-1.jpg" alt=""></div>
+    <div class="foto" style="left:1070px;top:120px;transform:rotate(3deg)"><img src="img/ensaio-3.jpg" alt=""></div>
+    <div class="foto" style="left:1330px;top:80px;transform:rotate(-2deg)"><img src="img/ensaio-5.jpg" alt=""></div>
+    <div class="foto" style="left:900px;top:470px;transform:rotate(2deg)"><img src="img/ensaio-4.jpg" alt=""></div>
+    <div class="foto" style="left:1190px;top:450px;transform:rotate(-3deg)"><img src="img/ensaio-2.jpg" alt=""></div>
+  </section>
+
   <!-- 13 -->
   <section class="cena" data-nome="O que muda em você" data-disco="1480,120,0"
     data-fala="Esta é a parte que a gente não escreve em entrega. Perguntar: qual dessas quatro você mais sente falta hoje? O vídeo é da jornada de Ana Karinna.">
@@ -218,7 +235,7 @@
   <!-- 14 -->
   <section class="cena" data-nome="Quem conduz" data-disco="1240,520,660"
     data-fala="Em primeira pessoa: primeira da família na universidade, Astro aos 21. Dizer que a marca pessoal que ela vê no meu perfil foi construída com o mesmo método que eu vendo.">
-    <div class="circ e" style="left:870px;top:150px;width:600px;height:600px"><img src="img/IMG_1219.jpg" alt="" style="object-position:50% 28%"></div>
+    <div class="circ e" style="left:870px;top:150px;width:600px;height:600px"><img src="img/conduz.jpg" alt="" style="object-position:50% 50%"></div>
     <div class="mini e" style="left:120px;top:200px;color:var(--acento)">Quem vai escutar a sua história</div>
     <div class="tit e" style="left:120px;top:250px;width:700px;font-size:112px">Ray <em>Guimarães</em></div>
     <p class="sub e" style="left:120px;top:520px;width:640px">Sou jornalista há mais de dez anos, com MBA em Comunicação e Marketing Digital, estrategista de marca e fundadora da Astro, agência de comunicação em saúde com nove anos de estrada. Fui a primeira da minha família a entrar numa universidade. E o que eu ensino, eu faço: a minha própria marca foi escrita com o mesmo método que você vai viver.</p>
@@ -269,19 +286,21 @@
   <!-- ===== PARTE 3 · FOLKS SYSTEM ===== -->
 
   <!-- 18 -->
-  <section class="cena" data-nome="E depois da jornada?" data-disco="1500,820,300"
+  <section class="cena escura" data-nome="E depois da jornada?" data-disco="800,450,0"
     data-fala="A segunda objeção, e a ponte pro Folks System. Deixar a pergunta no ar e responder com a cena seguinte.">
-    <div class="mini e" style="left:120px;top:110px;color:var(--acento)">A outra pergunta que eu sempre ouço</div>
-    <div class="tit e" style="left:120px;top:160px;width:1200px;font-size:84px">"E quando a jornada acabar e eu tiver que produzir <em>sozinha?"</em></div>
+    <div class="full"><img src="img/sozinha.jpg" alt=""></div><div class="veu marrom"></div>
+    <div class="mini e" style="left:120px;top:110px;color:rgba(237,235,220,.8)">A outra pergunta que eu sempre ouço</div>
+    <div class="tit e" style="left:120px;top:160px;width:1200px;font-size:84px;color:var(--papel)">"E quando a jornada acabar e eu tiver que produzir <em>sozinha?"</em></div>
     <p class="sub" data-p="1" style="left:120px;top:450px;width:980px">Essa pergunta é justa, viu. Eu já vi marca linda, escrita com cuidado, ficar parada num PDF porque a semana chegou e a pessoa não sabia por onde começar. Foi por isso que este ano a jornada ganhou mais uma etapa.</p>
   </section>
 
   <!-- 19 -->
-  <section class="cena" data-nome="Depois: a marca funcionando" data-disco="800,450,2400"
+  <section class="cena" data-nome="Depois: a marca funcionando" data-disco="1480,120,0"
     data-fala="Pausa antes desta cena. Aqui começa a novidade: quem faz a jornada ganha três meses de Folks System, sem custo, com a marca dela já dentro.">
-    <div class="mini e" style="left:0;right:0;top:300px;text-align:center;color:rgba(237,235,220,.8)">A etapa nova</div>
-    <div class="tit e" style="left:0;right:0;top:355px;text-align:center;font-size:124px;color:var(--papel)">A sua marca, <em>funcionando</em></div>
-    <p class="sub e" style="left:200px;right:200px;top:540px;text-align:center;color:rgba(237,235,220,.86)">Três meses de Folks System, sem custo, pra quem faz a jornada. Um sistema montado pra que a marca escrita vire conteúdo toda semana.</p>
+    <div class="painel e" style="left:700px;top:0;right:0;bottom:0"><img src="img/funcionando.jpg" alt="" style="object-position:50% 50%"><div class="fade"></div></div>
+    <div class="mini e" style="left:120px;top:250px;color:var(--acento)">A etapa nova</div>
+    <div class="tit e" style="left:120px;top:300px;width:640px;font-size:104px">A sua marca, <em>funcionando</em></div>
+    <p class="sub e" style="left:120px;top:570px;width:560px">Três meses de Folks System, sem custo, pra quem faz a jornada. Um sistema montado pra que a marca escrita vire conteúdo toda semana.</p>
   </section>
 
   <!-- 20 -->
@@ -470,15 +489,16 @@
   </section>
 
   <!-- 26 -->
-  <section class="cena" data-nome="Ao vivo" data-disco="800,450,2400"
+  <section class="cena escura" data-nome="Ao vivo" data-disco="800,450,0"
     data-fala="Abrir a plataforma na marca do Além do Feed. Pedir ideias, escolher uma, gerar o carrossel na frente dela.">
-    <div class="tit e" style="left:0;right:0;top:360px;text-align:center;font-size:104px;color:var(--papel)">Agora eu te mostro <em>funcionando</em></div>
-    <p class="sub e" style="left:0;right:0;top:520px;text-align:center;color:rgba(237,235,220,.86)">Com a minha marca, que já está lá dentro.</p>
+    <div class="full"><img src="img/aovivo.jpg" alt=""></div><div class="veu marrom" style="background:linear-gradient(180deg,rgba(60,38,24,.7) 0%,rgba(40,26,16,.86) 100%)"></div>
+    <div class="tit e" style="left:160px;right:160px;top:340px;text-align:center;font-size:100px;color:var(--papel)">Agora eu te mostro <em>funcionando</em></div>
+    <p class="sub e" style="left:0;right:0;top:500px;text-align:center;color:rgba(237,235,220,.9)">Com a minha marca, que já está lá dentro.</p>
   </section>
 
   <!-- 27 -->
-  <section class="cena" data-nome="Como os três meses contam" data-disco="200,470,64" data-gancho="tempo">
-    <div class="tit e" style="left:120px;top:110px;font-size:64px">Como os seus <em>três meses</em> contam</div>
+  <section class="cena escura" data-nome="Como os três meses contam" data-disco="200,470,64" data-gancho="tempo">
+    <div class="tit e" style="left:120px;top:110px;font-size:64px;color:var(--papel)">Como os seus <em>três meses</em> contam</div>
     <div class="trilho e" style="left:200px;top:470px;width:1200px"></div>
     <div class="marco e" style="left:200px"><i></i><h4>Você fecha a jornada</h4><p>O termo é de uma página. O briefing já fica marcado.</p></div>
     <div class="marco" data-p="1" style="left:500px"><i></i><h4>Encontros e DNA</h4><p>Eu escrevo a sua marca com você.</p></div>
@@ -545,9 +565,9 @@
   </section>
 
   <!-- 30: só pra quem já tem DNA, fora da sequência -->
-  <section class="cena" data-nome="Planos pra quem já tem DNA" data-disco="1510,840,320" data-pular
+  <section class="cena escura" data-nome="Planos pra quem já tem DNA" data-disco="1510,840,320" data-pular
     data-fala="Só pra quem já fez a jornada ou o DNA de marca com a Folks. Quem não tem DNA ouve a jornada.">
-    <div class="tit e" style="left:120px;top:100px;font-size:72px">Já tem o seu <em>DNA?</em></div>
+    <div class="tit e" style="left:120px;top:100px;font-size:72px;color:var(--papel)">Já tem o seu <em>DNA?</em></div>
     <p class="sub e" style="left:120px;top:210px;width:900px">Pra quem já fez a jornada ou o DNA de marca com a Folks, o Folks System sozinho.</p>
     <div class="plano" data-p="1" style="left:120px"><div class="k">Anual</div><div class="num">R$ 500</div><p>por mês, em 12 meses</p></div>
     <div class="plano" data-p="2" style="left:590px"><div class="k">Semestral</div><div class="num">R$ 700</div><p>por mês, em 6 meses</p></div>
@@ -557,7 +577,7 @@
   <!-- 31 -->
   <section class="cena" data-nome="Fechamento" data-disco="1480,120,0"
     data-fala="Terminar em voz baixa. O próximo passo é um café.">
-    <div class="painel e" style="left:640px;top:0;right:0;bottom:0"><img src="img/cafe.jpg" alt="" style="object-position:50% 35%"><div class="fade"></div></div>
+    <div class="painel e" style="left:640px;top:0;right:0;bottom:0"><img src="img/cafe-novo.jpg" alt="" style="object-position:50% 50%"><div class="fade"></div></div>
     <div class="tit e" style="left:120px;top:150px;width:720px;font-size:72px">Você é mais do que um feed bonito. <em>E existe um caminho pra provar isso</em></div>
     <p class="sub" data-p="1" style="left:120px;top:560px;width:500px">O próximo passo é um café. Eu escuto a sua história inteira, e a sua marca começa a ser escrita ali, antes de qualquer estratégia.</p>
     <div class="mini" data-p="1" style="left:120px;top:800px;color:var(--acento)">@ray.alemdofeed · alemdofeed.com.br</div>
@@ -566,10 +586,10 @@
   <!-- 2027 -->
   <section class="cena escura" data-nome="O seu 2027" data-disco="800,450,0"
     data-fala="Último slide. Dizer a frase, deixar o silêncio, e perguntar: faz sentido pra você?">
-    <div class="full"><img src="img/IMG_4551.jpg" alt="" style="object-position:50% 40%"></div><div class="veu"></div>
+    <div class="full"><img src="img/janela.jpg" alt="" style="object-position:50% 50%"></div><div class="veu"></div>
     <div class="mini e" style="left:0;right:0;top:120px;text-align:center;color:rgba(237,235,220,.8)">Antes de a gente desligar</div>
-    <div class="tit e" style="left:160px;right:160px;top:470px;text-align:center;font-size:110px;color:var(--papel)">O seu 2027 <em>começa agora</em></div>
-    <p class="sub" data-p="1" style="left:250px;right:250px;top:680px;text-align:center;color:rgba(237,235,220,.9)">E começa com uma marca escrita, funcionando toda semana. Se isso faz sentido pra você, me diz sim, e eu te mando o termo e a data do nosso café ainda hoje.</p>
+    <div class="tit e" style="left:160px;right:160px;top:560px;text-align:center;font-size:110px;color:var(--papel)">O seu 2027 <em>começa agora</em></div>
+    <p class="sub" data-p="1" style="left:250px;right:250px;top:740px;text-align:center;color:rgba(237,235,220,.9)">E começa com uma marca escrita, funcionando toda semana. Se isso faz sentido pra você, me diz sim, e eu te mando o termo e a data do nosso café ainda hoje.</p>
   </section>
 </div>
 
@@ -577,6 +597,6 @@
 <aside id="notas"></aside>
 <div id="dica">→ avança · ← volta · M cenas · F tela cheia · N notas</div>
 
-<script src="apresentacao.js?v=19"></script>
+<script src="apresentacao.js?v=23"></script>
 </body>
 </html>
